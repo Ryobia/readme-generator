@@ -42,6 +42,49 @@ function renderLicenseSection(license) {
   }
 }
 
+const renderInstall = data => {
+  if (data.confirmInstall) {
+  return `## Installation
+
+    ${data.installation}
+  
+  `;
+  }
+    return '';
+};
+
+const renderUsage = data => {
+  if (data.confirmUsage) {
+  return `## Usage
+
+    ${data.usage}
+  
+  `;
+  }
+    return '';
+};
+
+const renderContribution = data => {
+  if (data.confirmContribute) {
+  return `## Contribution
+
+    ${data.contribute}
+  
+  `;
+  }
+    return '';
+};
+const renderTests = data => {
+  if (data.confirmTest) {
+  return `## Tests
+
+    ${data.test}
+  
+  `;
+  }
+    return '';
+};
+
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
 
@@ -52,7 +95,6 @@ function generateMarkdown(data) {
 
 ## Table of Contents
 
-
 * [Installation](#installation)
 * [Usage](#usage)
 * [Contribution](#contribution)
@@ -61,21 +103,14 @@ function generateMarkdown(data) {
 * [Questions](#questions)
 
 
-## Installation
 
-  ${data.installation}
+${renderInstall(data)}
 
-## Usage
+${renderUsage(data)}
 
-  ${data.usage}
+${renderContribution(data)}
 
-## Contribution
-
-  ${data.contribute}
-
-## Tests
-
-  ${data.test}
+${renderTests(data)}
 
 ${renderLicenseSection(data.license)}
   ${renderLicenseLink(data.license)}
